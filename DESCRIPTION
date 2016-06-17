@@ -1,0 +1,36 @@
+Package: sights
+Type: Package
+Title: Statistics and dIagnostic Graphs for HTS
+Version: 0.99.3
+Authors@R: c(person("Elika", "Garg", email =
+        "elika.garg@mail.mcgill.ca", role = c("aut", "cre")),
+        person("Carl", "Murie", email = "cmurie@fredhutch.org", role =
+        "aut"), person("Heydar", "Ensha", email =
+        "heydar.ensha@mail.mcgill.ca", role = "ctb"), person("Robert",
+        "Nadon", email = "robert.nadon@mcgill.ca", role = "aut"))
+Author: Elika Garg [aut, cre], Carl Murie [aut], Heydar Ensha [ctb],
+        Robert Nadon [aut]
+Maintainer: Elika Garg <elika.garg@mail.mcgill.ca>
+Description: SIGHTS is a suite of normalization methods, statistical
+        tests, and diagnostic graphical tools for high throughput
+        screening (HTS) assays. HTS assays use microtitre plates to
+        screen large libraries of compounds for their biological,
+        chemical, or biochemical activity.
+License: GPL-3 | file LICENSE
+Depends: R(>= 3.3)
+Imports: MASS(>= 7.3), qvalue(>= 2.2), ggplot2(>= 2.0), reshape2(>=
+        1.4), lattice(>= 0.2)
+LazyData: TRUE
+Suggests: testthat, knitr, rmarkdown, ggthemes, gridExtra, xlsx
+Collate: 'ex_dataMatrix.R' 'inglese.R' 'internal.R' 'normZ.R'
+        'normRobZ.R' 'normR.R' 'normSPAWN.R' 'normLoess.R'
+        'normMedFil.R' 'normSights.R' 'plot3d.R' 'plotAutoco.R'
+        'plotBox.R' 'plotHeatmap.R' 'plotHist.R' 'plotScatter.R'
+        'statRVM.R' 'plotIGFit.R' 'plotSights.R' 'statFDR.R' 'statT.R'
+        'statSights.R'
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1
+biocViews: CellBasedAssays, MicrotitrePlateAssay, Normalization,
+        MultipleComparison, Preprocessing, QualityControl, BatchEffect,
+        Visualization
+NeedsCompilation: no

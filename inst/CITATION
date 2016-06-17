@@ -1,0 +1,9 @@
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "sights: Statistics and dIagnostic Graphs for HTS",
+         author = c(person("Elika", "Garg"),
+                    person("Carl", "Murie"),
+                    person("Robert", "Nadon")),
+         year = 2016,
+         note = note)
