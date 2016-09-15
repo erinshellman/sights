@@ -15,9 +15,10 @@ Identifying rare biological events in high-throughput screens requires using the
 #### <a name="links"></a>Links
 
 - [Bioconductor website](http://bioconductor.org/packages/sights/)  
-- [GitHub page](https://eg-r.github.io/privsig/)  
+- [GitHub page](https://eg-r.github.io/sights/)  
 - [HTML vignette](http://bioconductor.org/packages/devel/bioc/vignettes/sights/inst/doc/sights.html)  
 - [PDF manual](http://bioconductor.org/packages/devel/bioc/manuals/sights/man/sights.pdf)  
+- [Bug reports](https://github.com/eg-r/sights/issues)
 
 #### <a name="install"></a>Installation
 
