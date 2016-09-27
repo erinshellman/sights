@@ -1,7 +1,7 @@
 Package: sights
 Type: Package
 Title: Statistics and dIagnostic Graphs for HTS
-Version: 0.99.4
+Version: 0.99.5
 Authors@R: c(person("Elika", "Garg", email =
         "elika.garg@mail.mcgill.ca", role = c("aut", "cre")),
         person("Carl", "Murie", email = "cmurie@fredhutch.org", role =
@@ -21,7 +21,7 @@ URL: https://eg-r.github.io/sights/
 BugReports: https://github.com/eg-r/sights/issues
 Depends: R(>= 3.3)
 Imports: MASS(>= 7.3), qvalue(>= 2.2), ggplot2(>= 2.0), reshape2(>=
-        1.4), lattice(>= 0.2)
+        1.4), lattice(>= 0.2), stats(>= 3.3)
 LazyData: TRUE
 Suggests: testthat, knitr, rmarkdown, ggthemes, gridExtra, xlsx
 Collate: 'ex_dataMatrix.R' 'inglese.R' 'internal.R' 'normZ.R'
