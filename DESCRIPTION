@@ -1,7 +1,7 @@
 Package: sights
 Type: Package
 Title: Statistics and dIagnostic Graphs for HTS
-Version: 0.99.5
+Version: 0.99.6
 Authors@R: c(person("Elika", "Garg", email =
         "elika.garg@mail.mcgill.ca", role = c("aut", "cre")),
         person("Carl", "Murie", email = "cmurie@fredhutch.org", role =

@@ -33,10 +33,10 @@ _______________________________
 
 # Introduction
 
-  The `sights` package provides numerous normalization methods that correct the three types of bias that affect High-Throughput Screening (HTS) measurements: overall plate bias, within-plate spatial bias, and across-plate bias. Commonly-used normalization methods such as Z-scores (or methods such as percent inhibition/activation which use within-plate controls to normalize) correct only overall plate bias. Methods included in this package attempt to correct all three sources of bias and typically give better results.
-
+  The `sights` package provides numerous normalization methods that correct the three types of bias that affect High-Throughput Screening (HTS) measurements: overall plate bias, within-plate spatial bias, and across-plate bias. Commonly-used normalization methods such as Z-scores (or methods such as percent inhibition/activation which use within-plate controls to normalize) correct only overall plate bias. Methods included in this package attempt to correct all three sources of bias and typically give better results. 
+  
   Two statistical tests are also provided: the standard one-sample t-test and the recommended one-sample Random Variance Model (RVM) t-test, which has greater statistical power for the typically small number of replicates in HTS. Correction for the multiple statistical testing of the large number of constructs in HTS data is provided by False Discovery Rate (FDR) correction.  The FDR can be described as the proportion of false positives among the statistical tests called significant.
-
+  
   Included graphical and statistical methods provide the means for evaluating data analysis choices for HTS assays on a screen-by-screen basis. These graphs can be used to check fundamental assumptions of both raw and normalized data at every step of the analysis process.  
 
 > Citing Methods
@@ -49,7 +49,7 @@ References for the methods can be found in this vignette, on their specific help
 help(normSPAWN)
 ```
 
-The package citation can be accessed in R by:
+The package citation can be accessed in R by: 
 ```{r cite, results="show"}
 citation("sights")
 ```
@@ -65,13 +65,13 @@ source("http://bioconductor.org/biocLite.R")
 biocLite("sights")
 library("sights")
 ```
-
+  
 2.	This should also install and load the packages that SIGHTS imports: ggplot2 [@wickham2009ggplot2], reshape2 [@wickham2007reshaping], qvalue [@dabney2010qvalue], MASS [@venables2002mass], and lattice [@sarkar2008lattice].  
   Otherwise, you can install/update these packages manually.
 ``` {r dependencies, eval=FALSE}
 # Installing packages
 biocLite(c("ggplot2", "reshape2", "lattice", "MASS", "qvalue"))
-
+    
 # Updating packages
 biocLite("BiocUpgrade")
 biocLite()
@@ -91,9 +91,9 @@ help("ex_dataMatrix")
 data("inglese")
 ```
 
-2.	Your own data can be imported by giving the path of your file:
+2.	Your own data can be imported by giving the path of your file: 
 
--	If it is a .csv or .txt file, run
+-	If it is a .csv or .txt file, run 
 ```{r input_csv, eval=FALSE}
 read.csv("~/yourfile.csv", header=TRUE, sep=",")
 ## '~' is the folder location of your file 'yourfile.csv'.
@@ -103,7 +103,7 @@ read.csv("~/yourfile.csv", header=TRUE, sep=",")
 ## N.B. Be sure to use a forward slash ('/') to separate folder names.
 ```
 
--	If it is a Microsoft Excel file, you can import it directly by installing another package:
+-	If it is a Microsoft Excel file, you can import it directly by installing another package: 
 ```{r input_excel, eval=FALSE}
 install.packages("xlsx")
 ## This installs the xlsx package which enables import/export of Excel files.
@@ -116,7 +116,7 @@ read.xlsx("~/yourfile.xlsx", sheetName = "one")
 3.	Similarly any object saved in R (e.g. normalized results) can be exported as .csv or .xlsx files:
 ```{r output, eval=FALSE}
 write.csv(object_name, "~/yourresults.csv")
-## As a .csv file
+## As a .csv file 
 write.xlsx(object_name, "~/yourresults.xlsx")
 ## As a Microsoft Excel file (requires the "xlsx" package)
 ```
@@ -129,42 +129,42 @@ write.xlsx(object_name, "~/yourresults.xlsx")
 
 2. Some basic information about data (including your own data after importing) can be accessed by various functions.  For example, information about the Inglese *et al.* data set can be obtained as follows:
 ```{r information, eval=FALSE}
-View(inglese)
+View(inglese) 
 ## View the entire dataset
-edit(inglese)
+edit(inglese) 
 ## Edit the dataset
-head(inglese)
+head(inglese) 
 ## View the top few rows of the dataset
-str(inglese)
+str(inglese) 
 ## Get information on the structure of the dataset
-summary(inglese)
+summary(inglese) 
 ## Get a summary of variables in the dataset
-names(inglese)
+names(inglese) 
 ## Get the variable names of the dataset
 ```
 
 ## Information about methods
 
 1. There are several methods provided within SIGHTS:
-  - Normalization:
-    - Z, Robust Z (see @malo2006statistical),
-    - Loess [@baryshnikova2010quantitative],
+  - Normalization: 
+    - Z, Robust Z (see @malo2006statistical), 
+    - Loess [@baryshnikova2010quantitative], 
     - Median Filter [@bushway2011optimization],
-    - R [@wu2008quantitative], and
+    - R [@wu2008quantitative], and 
     - SPAWN [@murie2015improving].
-  - Statistical testing:
-    - one-sample t-test,
-    - one-sample RVM t-test [@malo2006statistical; @wright2003random], and
+  - Statistical testing: 
+    - one-sample t-test, 
+    - one-sample RVM t-test [@malo2006statistical; @wright2003random], and 
     - FDR correction [@storey2002direct].
-  - Plotting:
+  - Plotting: 
     - 3d plot,
     - heatmap,
-    - auto-correlation plot,
+    - auto-correlation plot, 
     - scatter plot,
-    - boxplot,
+    - boxplot, 
     - inverse-gamma fit plot, and
     - histograms.  
-
+     
   See `help("normSights")`, `help("statSights")`, `help("plotSights")`, and the help pages of individual methods for more information.
 
 2. Information about the package functions can be accessed by:
@@ -173,22 +173,22 @@ ls("package:sights")
 ## Lists all the functions and datasets available in the package
 lsf.str("package:sights")
 ## Lists all the functions and their usage
-args(plotSights)
+args(plotSights) 
 ## View the usage of a specific function
-example(topic = plotSights, package = "sights")
+example(topic = plotSights, package = "sights") 
 ## View examples of a specific function
 ```
 
 
 ## Quick reference
 
-1.  Normalization -
+1.  Normalization - 
   All normalization functions are accessible either via `normSights()` or their individual function names (e.g. `normSPAWN()`).
 
-2.  Statistical tests -
+2.  Statistical tests - 
   All statistical testing functions are accessible either via `statSights()` or their individual function names (e.g. `statRVM()`).
 
-3.  Plots -
+3.  Plots - 
   All plotting functions are accessible either via `plotSights()` or their individual function names (e.g. `plotAutoco()`).
 
   The results of these functions can be saved as objects and called by their assigned names. For example:
@@ -234,7 +234,7 @@ Across-plate bias | Assuming few true 'hits' within the screen, the majority of 
 - Conduct statistical tests on the normalized data and visualize the p-value distribution
 - Apply FDR correction
 
-  We will use the Inglese *et. al.* dataset [@inglese2006quantitative] to demonstrate application of SIGHTS and interpretation of results.
+  We will use the Inglese *et. al.* dataset [@inglese2006quantitative] to demonstrate application of SIGHTS and interpretation of results. 
 
 ```{r inglese}
 library("sights")
@@ -242,23 +242,23 @@ data("inglese")
 ```
 
 - Each column represents one plate of 1536-well plates
-- 1^st^ 4 columns and last 4 columns have controls - these have been removed as they are not necessary for the normalization methods
+- 1^st^ 4 columns and last 4 columns have controls - these have been removed as they are not necessary for the normalization methods 
 - As required, data are arranged by row so that the well index goes from (A01, A02, A03, ...)
 - There are 14 concentrations with three replicates each
 
   We will analyze data from two of the concentrations separately:
 
 1. Lowest Concentration (Three Replicate Plates: Exp1R1-Exp1R3)  
-  For these lowest concentration plates, the concentration is so low that
+  For these lowest concentration plates, the concentration is so low that 
 even active molecules (as determined by a titration series) do not show activity. We use these data to show what normalized null data should look like.  
-
+    
 2. 9^th^ Concentration (Three Replicate Plates: Exp9R1-Exp9R3)  
   For these higher concentration plates, some compounds show activity levels. We use these data to illustrate what data for a typical experiment might look like.
 
 
 ## Choose Normalization Method
 
-  SIGHTS has three graphical methods for visually detecting spatial bias within plates: standard "Heatmap" and "3d" plots, and autocorrelation plots ("Autoco") [@murie2015improving].
+  SIGHTS has three graphical methods for visually detecting spatial bias within plates: standard "Heatmap" and "3d" plots, and autocorrelation plots ("Autoco") [@murie2015improving]. 
 
 ### Replicates of Lowest Concentration (Exp1R1-Exp1R3)
 1. Raw Data  
@@ -278,7 +278,7 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = inglese, plateRows = 32, 
 ```
     Heatmap, 3d plot, and auto-correlation plots show that there is non-trivial within-plate spatial bias, strongly indicated by the high auto-correlations and the cyclical patterns in the auto-correlation plots.
 ```{r raw_bias2, fig.cap="Scatter plot: Across-plate bias is present, as indicated by the positive correlation between replicates. When screens have few true hits, replicate plates should be uncorrelated except within the hit range. Depending on the screen, hits could be represented by high or low scores or, as in this screen, by both. The blue line is the loess robust fit; the dashed line is the identity line."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = inglese, repIndex = c(1,1), plotRows = NULL, plotCols = 3:4, plotName = "Raw Exp1")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = inglese, repIndex = c(1,1), plotRows = NULL, plotCols = 3:4, plotName = "Raw Exp1", alpha=0.2)
 ```
 
 _______________________  
@@ -304,7 +304,7 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = Z.norm.inglese.01, plateR
 ```
     Heatmap, 3d plot, and auto-correlation plots show that within-plate spatial bias is unchanged from the raw data, because Z-scores are simply a linear transformation of the raw data.
 ```{r z_bias2, fig.cap="Scatter plot: Similarly, the correlational pattern between replicates (across-plate bias) remains.  Note, though, that the blue loess line now substantially overlaps the identity line because Z-score normalization corrects for overall plate bias."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = Z.norm.inglese.01, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "Z Exp1")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = Z.norm.inglese.01, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "Z Exp1", alpha=0.2)
 ```
 
 ________________________
@@ -324,7 +324,7 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = SPAWN.norm.inglese.01, pl
 ```
     Heatmap, 3d plot, and auto-correlation plots show that SPAWN has removed within-plate spatial bias, as indicated by the near zero correlations at each lag.
 ```{r spawn_bias2, fig.cap="Scatter plot: SPAWN has removed across-plate bias, as indicated by the near zero correlations between replicate plates."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = SPAWN.norm.inglese.01, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "SPAWN Exp1")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = SPAWN.norm.inglese.01, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "SPAWN Exp1", alpha=0.2)
 ```
 
 ____________________
@@ -346,16 +346,16 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = inglese, plateRows = 32, 
 ```
     Heatmap, 3d plot, and auto-correlation plots show that there is non-trivial within-plate spatial bias, strongly indicated by the high auto-correlations and the cyclical patterns in the auto-correlation plots.
 ```{r raw_bias11, fig.cap="Scatter plot: Across-plate bias is present, as indicated by the positive correlation between replicates."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = inglese, repIndex = c(1,1), plotRows = NULL, plotCols = 27:28, plotName = "Raw Exp9")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = inglese, repIndex = c(1,1), plotRows = NULL, plotCols = 27:28, plotName = "Raw Exp9", alpha=0.2)
 ```
 ______________________________  
 
 3. Z-score normalization  
   Because Z-score normalization does not correct spatial bias, it is not recommended for these data. We demonstrate SPAWN, one of the recommended normalization methods, which has been shown to perform the best among the available methods for these data. See @murie2015improving for the comparisons and for additional analyses which examined the various normalization methods separately for active and inactive molecules.
-
+  
 2. SPAWN normalization  
   SPAWN scores correct all three types of bias in these data.  
-
+  
 ```{r spawn_bias9, fig.cap="Boxplots: SPAWN has removed plate bias, as the medians of the three replicate plates are approximately equal."}
 SPAWN.norm.inglese.09 <- sights::normSights(normMethod = "SPAWN", dataMatrix = inglese, plateRows = 32, plateCols = 40, dataRows = NULL, dataCols = 3:44, trimFactor = 0.2, wellCorrection = TRUE, biasCols = 1:18)[,25:27]
 sights::plotSights(plotMethod = "Box", plotMatrix = SPAWN.norm.inglese.09, plotCols = 1:3, plotName = "SPAWN Exp9")
@@ -368,7 +368,7 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = SPAWN.norm.inglese.09, pl
 ```
     Heatmap, 3d plot, and auto-correlation plots show that SPAWN has removed within-plate spatial bias, as indicated by the near zero correlations at each lag.
 ```{r spawn_bias11, fig.cap="Scatter plot: The circular pattern for the majority of data points near zero indicates that across-plate bias has been greatly reduced. This is also shown by the approximately horizontal blue loess line within that range. Data points outside of that range are potential hits."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = SPAWN.norm.inglese.09, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "SPAWN Exp9")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = SPAWN.norm.inglese.09, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "SPAWN Exp9", alpha=0.2)
 ```
 
 _______________________________
@@ -436,10 +436,10 @@ ______________________________
   Other packages which provide more plotting options can be installed as well: ggthemes [@arnold2015package], gridExtra [@auguie2015package].
 
 ```{r extra, eval=FALSE}
-install.packages("ggthemes")
+install.packages("ggthemes") 
 ## This installs the ggthemes package, which has various themes that can be used with ggplot objects.
 library("ggthemes")
-install.packages("gridExtra")
+install.packages("gridExtra") 
 ## This installs the gridExtra package, which enables arrangement of plot objects.
 library("gridExtra")
 ```
