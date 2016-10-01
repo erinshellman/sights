@@ -278,7 +278,7 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = inglese, plateRows = 32, 
 ```
     Heatmap, 3d plot, and auto-correlation plots show that there is non-trivial within-plate spatial bias, strongly indicated by the high auto-correlations and the cyclical patterns in the auto-correlation plots.
 ```{r raw_bias2, fig.cap="Scatter plot: Across-plate bias is present, as indicated by the positive correlation between replicates. When screens have few true hits, replicate plates should be uncorrelated except within the hit range. Depending on the screen, hits could be represented by high or low scores or, as in this screen, by both. The blue line is the loess robust fit; the dashed line is the identity line."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = inglese, repIndex = c(1,1), plotRows = NULL, plotCols = 3:4, plotName = "Raw Exp1")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = inglese, repIndex = c(1,1), plotRows = NULL, plotCols = 3:4, plotName = "Raw Exp1", alpha=0.2)
 ```
 
 _______________________  
@@ -304,7 +304,7 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = Z.norm.inglese.01, plateR
 ```
     Heatmap, 3d plot, and auto-correlation plots show that within-plate spatial bias is unchanged from the raw data, because Z-scores are simply a linear transformation of the raw data.
 ```{r z_bias2, fig.cap="Scatter plot: Similarly, the correlational pattern between replicates (across-plate bias) remains.  Note, though, that the blue loess line now substantially overlaps the identity line because Z-score normalization corrects for overall plate bias."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = Z.norm.inglese.01, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "Z Exp1")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = Z.norm.inglese.01, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "Z Exp1", alpha=0.2)
 ```
 
 ________________________
@@ -324,7 +324,7 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = SPAWN.norm.inglese.01, pl
 ```
     Heatmap, 3d plot, and auto-correlation plots show that SPAWN has removed within-plate spatial bias, as indicated by the near zero correlations at each lag.
 ```{r spawn_bias2, fig.cap="Scatter plot: SPAWN has removed across-plate bias, as indicated by the near zero correlations between replicate plates."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = SPAWN.norm.inglese.01, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "SPAWN Exp1")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = SPAWN.norm.inglese.01, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "SPAWN Exp1", alpha=0.2)
 ```
 
 ____________________
@@ -346,7 +346,7 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = inglese, plateRows = 32, 
 ```
     Heatmap, 3d plot, and auto-correlation plots show that there is non-trivial within-plate spatial bias, strongly indicated by the high auto-correlations and the cyclical patterns in the auto-correlation plots.
 ```{r raw_bias11, fig.cap="Scatter plot: Across-plate bias is present, as indicated by the positive correlation between replicates."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = inglese, repIndex = c(1,1), plotRows = NULL, plotCols = 27:28, plotName = "Raw Exp9")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = inglese, repIndex = c(1,1), plotRows = NULL, plotCols = 27:28, plotName = "Raw Exp9", alpha=0.2)
 ```
 ______________________________  
 
@@ -368,7 +368,7 @@ sights::plotSights(plotMethod = "Autoco", plotMatrix = SPAWN.norm.inglese.09, pl
 ```
     Heatmap, 3d plot, and auto-correlation plots show that SPAWN has removed within-plate spatial bias, as indicated by the near zero correlations at each lag.
 ```{r spawn_bias11, fig.cap="Scatter plot: The circular pattern for the majority of data points near zero indicates that across-plate bias has been greatly reduced. This is also shown by the approximately horizontal blue loess line within that range. Data points outside of that range are potential hits."}
-sights::plotSights(plotMethod = "Scatter", plotMatrix = SPAWN.norm.inglese.09, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "SPAWN Exp9")
+sights::plotSights(plotMethod = "Scatter", plotMatrix = SPAWN.norm.inglese.09, repIndex = c(1,1), plotRows = NULL, plotCols = 1:2, plotName = "SPAWN Exp9", alpha=0.2)
 ```
 
 _______________________________
@@ -423,7 +423,7 @@ summary(SPAWN.norm.inglese.09.rvm.fdr)
 
 ## Basic modifications
 
-  All SIGHTS plotting functions, which use the ggplot2 package [@wickham2009ggplot2], have an ellipsis argument ("...") which passes on additional parameters to the specific ggplot _geom_ being used in that function. For example, the default plot title and the bar colors of the histogram can be modified as follows:
+  All SIGHTS plotting functions, which use the ggplot2 package [@wickham2009ggplot2] (i.e., all except `plot3d` that uses lattice graphics), have an ellipsis argument ("...") which passes on additional parameters to the specific ggplot _geom_ being used in that function. For example, the default plot title and the bar colors of the histogram can be modified as follows:
 
 ```{r ellipsis, fig.cap="Ellipsis: Add parameters to ggplot geom [@wickham2009ggplot2]."}
 sights::plotHist(plotMatrix = SPAWN.norm.inglese.09.rvm, plotCols = 5, plotAll = TRUE, binwidth = 0.02, fill = 'pink', color = 'black', plotName = "RVM test Exp9")

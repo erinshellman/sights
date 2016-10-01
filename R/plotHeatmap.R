@@ -31,20 +31,20 @@
 #' plateRows = 8, plateCols = 10, plotSep = FALSE)
 #'
 #' @export
-plotHeatmap <- function(plotMatrix, plateRows, plateCols, plotRows = NULL, plotCols = NULL, plotName = NULL, 
+plotHeatmap <- function(plotMatrix, plateRows, plateCols, plotRows = NULL, plotCols = NULL, plotName = NULL,
     plotSep = TRUE, ...) {
-    
+
     if (is.null(plotName)) {
         plotName <- ""
     } else {
         plotName <- paste(":", plotName)
     }
-    
+
     plotMatrix <- sightsCheck(plotMatrix, "plot", plotRows, plotCols, plateRows, plateCols)
-    
+
     len <- dim(plotMatrix)[[2]]
-    
-    
+
+
     revInd <- plateRows:1
     tmp <- matrix(plotMatrix, nrow = plateRows, byrow = FALSE)
     tmp1 <- tmp[revInd, ]
@@ -53,36 +53,38 @@ plotHeatmap <- function(plotMatrix, plateRows, plateCols, plotRows = NULL, plotC
     heatmelt$Rows <- as.factor(rep(1:plateRows))
     heatmelt$Columns <- as.factor(rep(1:plateCols, each = plateRows))
     heatmelt$Plate <- as.factor(rep(1:len, each = plateRows * plateCols))
-    
+
     if (plateCols > plateRows) {
         lpos = "bottom"
     } else {
         lpos = "right"
     }
-    
+
     if (plotSep) {
         gl <- list()
         for (i in 1:len) {
             heatmelti <- heatmelt[heatmelt$Plate == i, ]
+            heatmelti <- heatmelti[stats::complete.cases(heatmelti),]
             bk <- pretty(heatmelti$value, nchar(min(heatmelti$value)))
-            gl[[i]] <- ggplot2::ggplot(heatmelti) + ggplot2::geom_tile(ggplot2::aes_string(y = "Rows", x = "Columns", 
-                fill = "value"), ...) + ggplot2::labs(title = paste("Heatmap", plotName, "Plate", i)) + ggplot2::theme_bw() + 
-                ggplot2::theme(legend.position = lpos, title = ggplot2::element_text(size = 9), axis.text = ggplot2::element_text(size = 7), 
-                  axis.text.x = ggplot2::element_text(angle = 270, vjust = 0.2), legend.text = ggplot2::element_text(size = 7)) + 
-                ggplot2::scale_fill_gradient(low = "slategray1", high = "steelblue4", breaks = bk[c(2, length(bk) - 
+            gl[[i]] <- ggplot2::ggplot(heatmelti) + ggplot2::geom_tile(ggplot2::aes_string(y = "Rows", x = "Columns",
+                fill = "value"), ...) + ggplot2::labs(title = paste("Heatmap", plotName, "Plate", i)) + ggplot2::theme_bw() +
+                ggplot2::theme(legend.position = lpos, title = ggplot2::element_text(size = 9), axis.text = ggplot2::element_text(size = 7),
+                  axis.text.x = ggplot2::element_text(angle = 270, vjust = 0.2), legend.text = ggplot2::element_text(size = 7)) +
+                ggplot2::scale_fill_gradient(low = "slategray1", high = "steelblue4", breaks = bk[c(2, length(bk) -
                   1)])
-            
+
         }
         message("Number of plots = ", i)
     } else {
         heatmelt$Plate <- paste("Plate", heatmelt$Plate)
         heatmelt$Plate <- factor(heatmelt$Plate, levels = unique(heatmelt$Plate))
+        heatmelt <- heatmelt[stats::complete.cases(heatmelt),]
         bk <- pretty(heatmelt$value, nchar(min(heatmelt$value)))
-        gl <- ggplot2::ggplot(heatmelt) + ggplot2::geom_tile(ggplot2::aes_string(y = "Rows", x = "Columns", 
-            fill = "value"), ...) + ggplot2::labs(title = paste("Heatmap", plotName)) + ggplot2::theme_bw() + 
-            ggplot2::theme(title = ggplot2::element_text(size = 9), axis.text = ggplot2::element_text(size = 7), 
-                axis.text.x = ggplot2::element_text(angle = 270, vjust = 0.2), legend.text = ggplot2::element_text(size = 7)) + 
-            ggplot2::facet_wrap(~Plate) + ggplot2::scale_fill_gradient(low = "slategray1", high = "steelblue4", 
+        gl <- ggplot2::ggplot(heatmelt) + ggplot2::geom_tile(ggplot2::aes_string(y = "Rows", x = "Columns",
+            fill = "value"), ...) + ggplot2::labs(title = paste("Heatmap", plotName)) + ggplot2::theme_bw() +
+            ggplot2::theme(title = ggplot2::element_text(size = 9), axis.text = ggplot2::element_text(size = 7),
+                axis.text.x = ggplot2::element_text(angle = 270, vjust = 0.2), legend.text = ggplot2::element_text(size = 7)) +
+            ggplot2::facet_wrap(~Plate) + ggplot2::scale_fill_gradient(low = "slategray1", high = "steelblue4",
             breaks = bk[c(2, length(bk) - 1)])
         message("Number of plots = 1")
     }
